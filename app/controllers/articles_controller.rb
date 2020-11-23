@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit]
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @articles = Article.all.order('created_at DESC')
@@ -42,5 +43,11 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 end
