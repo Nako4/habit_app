@@ -1,0 +1,11 @@
+<div class="contents row">
+  <div class="container">
+    <h3>編集ページ </h3>
+    <%= form_with(model: @article, local: true) do |f| %>
+      <%= f.text_field :title, placeholder: "タイトル" %>
+      <%= f.text_area :output, placeholder: "学んだ内容", size: "10x10"%>
+      <%= f.text_field :action, placeholser: "行動習慣にすること" %>
+      <%= f.submit "更新する！" %>
+    <% end %>
+  </div>
+</div>

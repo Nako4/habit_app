@@ -1,0 +1,18 @@
+<div class="contents row">
+    <div class="more">
+    <div>
+    <p><%= @article.title %></p>
+    <span class="name"><%= @article.output %>
+    </span>
+    <ul>
+      <li>
+        <%= link_to '編集', edit_article_path(@article.id), method: :get %>
+      </li>
+      <li>
+        <%= link_to '削除', article_path(@article.id), method: :delete %>
+      </li>
+      <li>
+        <p>いいね機能</p>
+      </li>
+    </ul>
+</div>
