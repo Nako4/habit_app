@@ -31,17 +31,16 @@ RSpec.describe Article, type: :model do
       end
 
       it 'タイトルの文字が40文字を超えている時' do
-        @article.title = "#{ "あ" * 41}"
+        @article.title = ('あ' * 41).to_s
         @article.valid?
-        expect(@article.errors.full_messages).to include("Title is too long (maximum is 40 characters)")
+        expect(@article.errors.full_messages).to include('Title is too long (maximum is 40 characters)')
       end
 
       it '投稿内容が400文字を超える時' do
-      @article.output = "#{ "あ" * 401 }"
-      @article.valid?
-      expect(@article.errors.full_messages).to include("Output is too long (maximum is 400 characters)")
+        @article.output = ('あ' * 401).to_s
+        @article.valid?
+        expect(@article.errors.full_messages).to include('Output is too long (maximum is 400 characters)')
       end
-
     end
   end
 end
