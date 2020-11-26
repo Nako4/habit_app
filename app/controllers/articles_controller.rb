@@ -1,18 +1,19 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit]
-  before_action :move_to_index, except: [:index, :show]
+  # before_action :move_to_index, except: [:index, :show]
 
   def index
     @articles = Article.all.order('created_at DESC')
   end
 
   def new
-    @article = Article.new
+    @article_tag = ArticleTag.new
   end
 
   def create
-    @article = Article.new(article_params)
-    if @article.save
+    @article_tag = ArticleTag.new(article_params)
+    if @article_tag.valid?
+      @article_tag.save
       redirect_to articles_path
     else
       render :new
@@ -37,8 +38,9 @@ class ArticlesController < ApplicationController
 
   private
 
+  #formオブジェクトから保存する値は全てpermitで指定する
   def article_params
-    params.require(:article).permit(:title, :output, :action)
+    params.require(:article_tag).permit(:title, :output, :action, :article_id, :tag_name, :tag_id)
   end
 
   def set_article
