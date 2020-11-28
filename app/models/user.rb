@@ -10,4 +10,7 @@ class User < ApplicationRecord
     validates :nickname, length: {maximum: 15 }
     validates :password, format: {with: PASSWORD_REGEX }
   end
+
+  has_one :habit
+  
 end

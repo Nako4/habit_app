@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_204106) do
+ActiveRecord::Schema.define(version: 2020_11_28_034607) do
 
   create_table "article_tag_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "article_id"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 2020_11_24_204106) do
     t.text "output", null: false
     t.string "action"
     t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "habits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.boolean "checked"
+    t.integer "user_id"
+    t.integer "action_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
