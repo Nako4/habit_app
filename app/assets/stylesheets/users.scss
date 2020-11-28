@@ -1,0 +1,32 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.whole {
+  width: 800px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: grid;
+  grid-template:
+    "... ...... ...... ...... ..." 100px
+    "... header header header ..." 100px
+    "... ...... ...... ...... ..." 10px
+    "... left   ...... right  ..." 1fr
+    "... ...... ...... ...... ..." 10px
+    /auto 1fr    auto  250px  auto;
+}
+
+.calender {
+  grid-area: header;
+
+}
+.habit-list {
+  grid-area: left;
+  display:flex;
+  flex-direction: column;
+}
+.achieve {
+  grid-area: right;
+}
+.action {
+  
+}

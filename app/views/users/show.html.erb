@@ -1,0 +1,24 @@
+<h1>Users#show</h1>
+
+<div class="whole">
+  <div class="calender">
+    <div>top</div>
+  </div>
+  <div class="habit-list">
+    <div>left</div>
+    <% @articles.each do |article| %>
+      <div class="action">
+        <%= "#{article.action}" %>
+      </div>
+    <% end %>
+
+
+  </div>
+  <div class="achieve">
+    <div>right</div>
+  </div>
+</div>
+<p>Find me in app/views/users/show.html.erb</p>
+<p>My Page<%= current_user.id %></p>
+
+<p>Find me in app/views/users/show.html.erb</p>

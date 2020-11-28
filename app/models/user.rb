@@ -7,7 +7,9 @@ class User < ApplicationRecord
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
 
   with_options presence: true do
-    validates :nickname, length: {maximum: 15 }
-    validates :password, format: {with: PASSWORD_REGEX }
+    validates :nickname, length: { maximum: 15 }
+    validates :password, format: { with: PASSWORD_REGEX }
   end
+
+  has_one :habit
 end
