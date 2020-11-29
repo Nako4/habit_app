@@ -6,9 +6,9 @@
   </div>
   <div class="habit-list">
     <div>left</div>
-    <% @articles.each do |article| %>
-      <div class="action">
-        <%= "#{article.action}" %>
+    <% @habits.each do |habit| %>
+      <div class="action" data-id=<%= habit.id %> data-check=<%= habit.checked %>>
+        <%= "#{habit.action_id}" %>
       </div>
     <% end %>
 
