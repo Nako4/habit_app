@@ -16,5 +16,4 @@ class UsersController < ApplicationController
     item = Habit.find(params[:id])
     render json: { action: item }
   end
-
 end
