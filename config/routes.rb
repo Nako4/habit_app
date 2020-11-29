@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'articles#index'
   resources :articles
+  get 'habits/:id', to: 'users#checked'
 end

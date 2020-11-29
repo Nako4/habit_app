@@ -37,6 +37,8 @@ class ArticlesController < ApplicationController
     article.destroy
   end
 
+
+
   private
 
   # formオブジェクトから保存する値は全てpermitで指定する
