@@ -9,8 +9,9 @@ class ArticleTag
 
   def save(current_user)
     article = Article.create!(title: title, output: output, action: action, user_id: current_user.id)
-    tag = Tag.create!(tag_name: tag_name)
+    tag = Tag.where(tag_name: tag_name).first_or_initialize
+    tag.save
     ArticleTagRelation.create!(article_id: article.id, tag_id: tag.id)
-    Habit.create!(action_id: action, user_id: current_user.id)
+    habit = Habit.create!(action: action, user_id: current_user.id)
   end
 end

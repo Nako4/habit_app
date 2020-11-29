@@ -8,7 +8,7 @@
     <div>left</div>
     <% @habits.each do |habit| %>
       <div class="action" data-id=<%= habit.id %> data-check=<%= habit.checked %>>
-        <%= "#{habit.action_id}" %>
+        <%= "#{habit.action}" %>
       </div>
     <% end %>
 
