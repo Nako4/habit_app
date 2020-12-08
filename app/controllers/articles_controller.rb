@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :set_article, only: [:show, :edit]
-  # before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @articles = Article.all.order('created_at DESC')
@@ -13,8 +13,9 @@ class ArticlesController < ApplicationController
 
   def create
     @article_tag = ArticleTag.new(article_params)
+    tag_list = params[:article][:tag_name].split(',')
     if @article_tag.valid?
-      @article_tag.save(current_user)
+      @article_tag.save(tag_list)
       redirect_to articles_path
     else
       render :new
@@ -25,23 +26,32 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @article = Article.find(params[:id])
+    @article_tag = ArticleTag.new(article: @article)
   end
 
   def update
-    article = Article.find(params[:id])
-    article.update(article_params)
+    @article = Article.find(params[:id])
+    @article_tag = ArticleTag.new(article_params, article: @article)
+    tag_list = params[:article][:tag_name].split(',')
+    if @article_tag.valid?
+      @article_tag.save(tag_list)
+      redirect_to article_path(@article)
+    else
+      render :edit
+    end
   end
 
   def destroy
-    article = Article.find(params[:id])
-    article.destroy
+    @article = Article.find(params[:id])
+    redirect_to root_path if @article.destroy
   end
 
   private
 
   # formオブジェクトから保存する値は全てpermitで指定する
   def article_params
-    params.require(:article_tag).permit(
+    params.require(:article).permit(
       :title, :output, :action, :user_id, :article_id, :tag_name, :tag_id
     ).merge(user_id: current_user.id)
   end
