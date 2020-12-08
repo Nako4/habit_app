@@ -12,9 +12,11 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    binding.pry
     @article_tag = ArticleTag.new(article_params)
+    tag_list = params[:article][:tag_name].split(',')
     if @article_tag.valid?
-      @article_tag.save(current_user)
+      @article_tag.save(tag_list)
       redirect_to articles_path
     else
       render :new
@@ -25,29 +27,39 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @article = Article.find(params[:id])
+    @article_tag = ArticleTag.new(article: @article)
+    # @article = Article.find(params[:id])
+    # @tag_list = @article.tags.pluck(:tag_name).join(',')
   end
 
   def update
-    article = Article.find(params[:id])
-    article.update(article_params)
+    @article = Article.find(params[:id])
+    @article_tag = ArticleTag.new(article_params, article: @article)
+    tag_list = params[:article][:tag_name].split(',')
+    if @article_tag.valid?
+      @article_tag.save(tag_list)
+      redirect_to article_path(@article)
+    else
+      render :edit
+    end
   end
 
   def destroy
-    article = Article.find(params[:id])
-    article.destroy
+    @article = Article.find(params[:id])
+    redirect_to root_path if @article.destroy
   end
 
   private
 
   # formオブジェクトから保存する値は全てpermitで指定する
   def article_params
-    params.require(:article_tag).permit(
-      :title, :output, :action, :user_id, :article_id, :tag_name, :tag_id
-    ).merge(user_id: current_user.id)
+    params.require(:article).permit(:title, :output, :action, :user_id, :article_id, :tag_name, :tag_id).merge(user_id: current_user.id)
   end
 
   def set_article
     @article = Article.find(params[:id])
+    # @tag = Tag.find(params[:id])
   end
 
   def move_to_index
