@@ -10,6 +10,7 @@ class ArticleTag
   # レコードに値があるかないかでcreateかupdateかに分岐させる
   delegate :persisted?, to: :article
 
+  # 初期値として、新規登録の場合はnil、更新の場合は元データを使ってインスタンス生成する
   def initialize(attributes = nil, article: Article.new)
     @article = article
     attributes ||= default_attributes
@@ -17,7 +18,6 @@ class ArticleTag
   end
 
   def save(tag_list)
-
     ActiveRecord::Base.transaction do
       @article.update(title: title, output: output, action: action, user_id: user_id)
 
@@ -35,7 +35,6 @@ class ArticleTag
         article_tag_relation = ArticleTagRelation.where(article_id: @article.id, tag_id: article_tag.id).first_or_initialize
         article_tag_relation.update(article_id: @article.id, tag_id: article_tag.id)
       end
-
     end
   end
 

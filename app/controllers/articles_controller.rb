@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :set_article, only: [:show, :edit]
-  # before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @articles = Article.all.order('created_at DESC')
@@ -12,7 +12,6 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    binding.pry
     @article_tag = ArticleTag.new(article_params)
     tag_list = params[:article][:tag_name].split(',')
     if @article_tag.valid?
@@ -29,8 +28,6 @@ class ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
     @article_tag = ArticleTag.new(article: @article)
-    # @article = Article.find(params[:id])
-    # @tag_list = @article.tags.pluck(:tag_name).join(',')
   end
 
   def update
@@ -54,12 +51,13 @@ class ArticlesController < ApplicationController
 
   # formオブジェクトから保存する値は全てpermitで指定する
   def article_params
-    params.require(:article).permit(:title, :output, :action, :user_id, :article_id, :tag_name, :tag_id).merge(user_id: current_user.id)
+    params.require(:article).permit(
+      :title, :output, :action, :user_id, :article_id, :tag_name, :tag_id
+    ).merge(user_id: current_user.id)
   end
 
   def set_article
     @article = Article.find(params[:id])
-    # @tag = Tag.find(params[:id])
   end
 
   def move_to_index
