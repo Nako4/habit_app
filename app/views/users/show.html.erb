@@ -2,23 +2,30 @@
 
 <div class="whole">
   <div class="calender">
-    <div>top</div>
+    <%= month_calendar do |date| %>
+      <%= link_to "#{date}", users_new_path  %>
+    <% end %>
   </div>
   <div class="habit-list">
-    <div>left</div>
-    <% @habits.each do |habit| %>
-      <div class="action" data-id=<%= habit.id %> data-check=<%= habit.checked %>>
-        <%= "#{habit.action}" %>
+    <% @articles.each do |article| %>
+    <div class="action">
+      <%= "#{article.action}" unless article.action.nil? %>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="achieve">
+    <div >right</div>
+    <% @articles.each do |article| %>
+      <div class="my-article" >
+        <p><%= link_to "#{article.title}", article_path(article.id), method: :get %></p>
+        <span class="name">
+          <%= article.output%>
+        </span>
       </div>
     <% end %>
-
-
-  </div>
-  <div class="achieve">
-    <div>right</div>
   </div>
 </div>
-<p>Find me in app/views/users/show.html.erb</p>
 <p>My Page<%= current_user.id %></p>
 
 <p>Find me in app/views/users/show.html.erb</p>
