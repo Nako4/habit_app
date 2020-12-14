@@ -1,23 +1,28 @@
-function check() {
-  // クラス名actionの要素を全て取得する
-  const actions = document.querySelectorAll(".action");
-  actions.forEach(function(action){
-    action.addEventListener("click", () => {
-      const actionId = action.getAttribute("data-id")
-      const XHR = new XMLHttpRequest();
-      XHR.open("GET", `/habits/${actionId}`, true);
-      XHR.responseType = "json";
-      XHR.send();
-      XHR.onload = () => {
-        const item = XHR.response.action;
-        if (item.checked === true) {
-          action.setAttribute("data-check", "true");
-        } else if (item.checked === false) {
-          action.removeAttribute("data-check");
-        }
-      };
+window.addEventListener('load', function(){
 
+  let days = document.getElementsByClassName("days")
+  days = Array.from(days);
+  days.forEach(function (day) {
+    day.addEventListener("click", () => {
+      const dayText = day.innerHTML.trim();
+      document.getElementById('date-record').value = dayText
+      const dayPanel = day.parentNode
+      console.log(dayPanel)
+      
     });
   });
-}
-window.addEventListener("load", check);
+
+  $(function(){
+    let countAll = $('input:checkbox').length;
+    console.log(countAll)
+    $('input:checkbox').change(function(){
+      // let countCheck = $('#action-list input:checkbox:checked').length;
+      //idをいれるとなぜか一番上しかカウントされない。
+      
+      let countCheck = $('input:checkbox:checked').length;
+      let achieveRate = countCheck / countAll　* 100
+      $('span.achieve-count').text(achieveRate);
+    }).trigger('change');
+  })
+
+});

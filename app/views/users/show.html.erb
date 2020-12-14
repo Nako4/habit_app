@@ -3,14 +3,31 @@
 <div class="whole">
   <div class="calender">
     <%= month_calendar do |date| %>
-      <%= link_to "#{date}", users_new_path  %>
+      <div class="days">
+        <%= date  %>
+      </div>
     <% end %>
   </div>
   <div class="habit-list">
-    <% @articles.each do |article| %>
-    <div class="action">
-      <%= "#{article.action}" unless article.action.nil? %>
-    </div>
+    <%= form_with(model: @habit, url: users_path, id: 'achieve-form', local: true) do |f|  %>
+      <%= f.text_field :date, class: "date-record", id: "date-record", value: Date.today %>
+      
+      <% @articles.each do |article| %>
+        <% unless article.action == "" %>
+        
+        <div class="action-list" id="action-list">
+            <%= f.check_box :checked, {}, "true", nil %>
+            <%= f.label :checked, "#{article.action}", class: "habit-item" %>
+        </div>
+
+        <% end %>
+      <% end %>
+      <div>
+        今日の達成率は
+        <span class="achieve-count"></span>
+        ％
+      </div>
+      <%= f.submit "登録！", class: "habit-record" %>
     <% end %>
   </div>
 
