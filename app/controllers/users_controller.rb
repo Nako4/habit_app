@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    binding.pry
+    # binding.pry
     @article = Article.where(user_id: current_user.id)
     @habit = Habit.new(habit_params)
     if @habit.valid?
@@ -22,6 +22,6 @@ class UsersController < ApplicationController
   private
 
   def habit_params
-    params.permit(:date, checked: []).merge(user_id: current_user.id)
+    params.permit(:date, :achieve).merge(user_id: current_user.id)
   end
 end

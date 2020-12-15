@@ -27,6 +27,7 @@
         <span class="achieve-count"></span>
         ％
       </div>
+      <%= f.text_field :achieve, id: 'form-value', class: 'form-value', type: 'hidden' %>
       <%= f.submit "登録！", class: "habit-record" %>
     <% end %>
   </div>

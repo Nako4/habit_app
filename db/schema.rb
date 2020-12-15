@@ -33,8 +33,7 @@ ActiveRecord::Schema.define(version: 2020_11_28_034607) do
   create_table "habits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.date "date"
-    t.text "action"
-    t.boolean "checked"
+    t.integer "achieve"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

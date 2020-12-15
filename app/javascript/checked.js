@@ -22,6 +22,8 @@ window.addEventListener('load', function(){
       let countCheck = $('input:checkbox:checked').length;
       let achieveRate = countCheck / countAll　* 100
       $('span.achieve-count').text(achieveRate);
+      const achieveValue = document.getElementById('form-value')
+      $('input.form-value').val(achieveRate);
     }).trigger('change');
   })
 

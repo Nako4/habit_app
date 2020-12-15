@@ -3,8 +3,7 @@ class CreateHabits < ActiveRecord::Migration[6.0]
     create_table :habits do |t|
       t.integer :user_id, foreign_key: true
       t.date :date
-      t.text :action, foreign_key: true
-      t.boolean :checked
+      t.integer :achieve
 
       t.timestamps
     end
