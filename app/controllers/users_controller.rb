@@ -1,12 +1,6 @@
 class UsersController < ApplicationController
 
-  def new
-    @articles = Article.where(user_id: current_user.id).order('created_at DESC')
-    @habit = Article.new
-  end
-
   def create
-    # binding.pry
     @article = Article.where(user_id: current_user.id)
     @habit = Habit.new(habit_params)
     if @habit.valid?
@@ -17,6 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @articles = Article.where(user_id: current_user.id).order('created_at DESC') 
+    @habits = Habit.where(user_id: current_user.id)
   end
 
   private
@@ -24,4 +19,5 @@ class UsersController < ApplicationController
   def habit_params
     params.permit(:date, :achieve).merge(user_id: current_user.id)
   end
+
 end

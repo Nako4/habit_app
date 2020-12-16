@@ -2,10 +2,15 @@
 
 <div class="whole">
   <div class="calender">
-    <%= month_calendar do |date| %>
+    <%= month_calendar events: @habits do |date, habit| %>
       <div class="days">
-        <%= date  %>
+        <%= date %>
       </div>
+      <% habit.each do |habit| %>
+      <div class="achieve-rate">
+          <%= habit.achieve%><span>%</span>
+      </div>
+      <% end %>
     <% end %>
   </div>
   <div class="habit-list">
