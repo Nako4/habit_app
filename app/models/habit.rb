@@ -4,4 +4,10 @@ class Habit < ApplicationRecord
   def start_time
     self.date
   end
+
+  with_options presence: true do
+    validates :date
+    validates :achieve
+  end
+
 end

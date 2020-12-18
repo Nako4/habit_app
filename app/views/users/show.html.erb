@@ -7,14 +7,18 @@
         <%= date %>
       </div>
       <% habit.each do |habit| %>
-      <div class="achieve-rate">
+      <div class="achieve-rate",  id="achieve-rate">
+        <% if habit.persisted? %>
           <%= habit.achieve%><span>%</span>
+        <% elsif %>
+          nil
+        <% end %>
       </div>
       <% end %>
     <% end %>
   </div>
   <div class="habit-list">
-    <%= form_with(model: @habit, url: users_path, id: 'achieve-form', local: true) do |f|  %>
+    <%= form_with(model: @habit, id: 'achieve-form', local: true) do |f|  %>
       <%= f.text_field :date, class: "date-record", id: "date-record", value: Date.today %>
       
       <% @articles.each do |article| %>

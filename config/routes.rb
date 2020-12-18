@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  get 'users/show'
-  get 'users/new'
-  resources :users, only: [:new, :create, :show]
   devise_for :users
   root to: 'articles#index'
-  resources :articles
-  get 'habits/:id', to: 'users#checked'
+  resources :users, only: [:create, :show]
+  resources :articles, except: [:destroy]
+
+  #users/showにアクセスしたときにusersコントローラーのcreateアクションを実行
+  get 'users/show' => 'users#create'
+  #users/showにpostしたときにusersコントローラーのcreateアクションを実行
+  post 'users/show' => 'users#create'
+
 end
