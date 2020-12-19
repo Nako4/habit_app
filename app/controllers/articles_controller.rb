@@ -5,6 +5,10 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all.order('created_at DESC')
+    @article = @articles.find_by(params[:id])
+    @users = User.all
+    @tags = Tag.all
+    # binding.pry
   end
 
   def new

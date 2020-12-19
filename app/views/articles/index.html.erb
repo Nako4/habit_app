@@ -1,11 +1,19 @@
 <h1>TOPページ</h1>
 <div class="contents row">
   <% @articles.each do |article| %>
+
     <div class="content_post" >
-      <p><%= link_to "#{article.title}", article_path(article.id), method: :get %></p>
-      <span class="name">
-        <%= article.output%>
-      </span>
+      <div class="post_user">
+        <%= user = article.user.nickname %>さんの投稿(<%= article.updated_at.strftime('20%y/%m/%d') %>)
+      </div>
+      <div class="title"><%= link_to "#{article.title}", article_path(article.id), method: :get %></div>
+  
+      <div class="tags">
+        <% article.tags.each do |tag| %>
+          <%= tag.tag_name %>
+        <% end %>
+      </div>
     </div>
   <% end %>
+
 </div>

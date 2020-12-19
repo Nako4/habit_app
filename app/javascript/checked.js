@@ -6,13 +6,7 @@ window.addEventListener('load', function(){
     day.addEventListener("click", () => {
       const dayText = day.innerHTML.trim();
       document.getElementById('date-record').value = dayText
-      
     });
-
-  
-
-
-
   });
 
     //達成度のかかれたパネルを取得
@@ -26,7 +20,6 @@ window.addEventListener('load', function(){
       const dayPanel = achievePanel.parentNode
       const achieveValueElement = achievePanel.innerHTML
       const achieveValue = Number( achieveValueElement.replace(/[^0-9]/g, '') )
-      console.log(achieveValue)
       if (achieveValue >=80) {
         dayPanel.style.backgroundColor = "#12DD09";
       } else if (achieveValue >= 60) {
