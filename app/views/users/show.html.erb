@@ -2,23 +2,53 @@
 
 <div class="whole">
   <div class="calender">
-    <div>top</div>
+    <%= month_calendar events: @habits do |date, habit| %>
+      <div class="days">
+        <%= date %>
+      </div>
+      <% habit.each do |habit| %>
+      <div class="achieve-rate",  id="achieve-rate">
+          <%= habit.achieve%><span>%</span>
+      </div>
+      <% end %>
+    <% end %>
   </div>
   <div class="habit-list">
-    <div>left</div>
-    <% @habits.each do |habit| %>
-      <div class="action" data-id=<%= habit.id %> data-check=<%= habit.checked %>>
-        <%= "#{habit.action}" %>
+    <%= form_with(model: @habit, id: 'achieve-form', local: true) do |f|  %>
+      <%= f.text_field :date, class: "date-record", id: "date-record", value: Date.today %>
+      
+      <% @articles.each do |article| %>
+        <% unless article.action == "" %>
+        
+        <div class="action-list" id="action-list">
+            <%= f.check_box :checked, {}, "true", nil %>
+            <%= f.label :checked, "#{article.action}", class: "habit-item" %>
+        </div>
+
+        <% end %>
+      <% end %>
+      <div>
+        今日の達成率は
+        <span class="achieve-count"></span>
+        ％
+      </div>
+      <%= f.text_field :achieve, id: 'form-value', class: 'form-value', type: 'hidden' %>
+      <%= f.submit "登録！", class: "habit-record" %>
+    <% end %>
+  </div>
+
+  <div class="achieve">
+    <div >right</div>
+    <% @articles.each do |article| %>
+      <div class="my-article" >
+        <p><%= link_to "#{article.title}", article_path(article.id), method: :get %></p>
+        <span class="name">
+          <%= article.output%>
+        </span>
       </div>
     <% end %>
-
-
-  </div>
-  <div class="achieve">
-    <div>right</div>
   </div>
 </div>
-<p>Find me in app/views/users/show.html.erb</p>
 <p>My Page<%= current_user.id %></p>
 
 <p>Find me in app/views/users/show.html.erb</p>

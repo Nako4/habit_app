@@ -8,7 +8,7 @@
   display: grid;
   grid-template:
     "... ...... ...... ...... ..." 100px
-    "... header header header ..." 100px
+    "... header header header ..." auto
     "... ...... ...... ...... ..." 10px
     "... left   ...... right  ..." 1fr
     "... ...... ...... ...... ..." 10px
@@ -17,19 +17,37 @@
 
 .calender {
   grid-area: header;
-
 }
 .habit-list {
   grid-area: left;
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 .achieve {
   grid-area: right;
 }
-.action {
-  
+input[type="checkbox"]{
+  position: relative;
+  top: 0px;
+  margin-left: -250px;
+}
+.habit-item {
+  margin-left: -250px;  
 }
 div[data-check="true"] {
   background: #111111;
+}
+.habit-record {
+  width: 100px;
+  height: 50px;
+  margin-left: 10px;
+}
+
+.date-record{
+  margin-left: 15px;
+  width: 140px;
+}
+
+.days {
+  font-size: 14px;
 }
