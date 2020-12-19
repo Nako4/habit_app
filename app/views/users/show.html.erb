@@ -8,11 +8,7 @@
       </div>
       <% habit.each do |habit| %>
       <div class="achieve-rate",  id="achieve-rate">
-        <% if habit.persisted? %>
           <%= habit.achieve%><span>%</span>
-        <% elsif %>
-          nil
-        <% end %>
       </div>
       <% end %>
     <% end %>
