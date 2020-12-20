@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   #users/showにpostしたときにusersコントローラーのcreateアクションを実行
   post 'users/show' => 'users#create'
 
+  get 'search' => 'articles#search'
+
 end

@@ -1,0 +1,10 @@
+<h1>検索結果</h1>
+  <div class="search-result">
+    <div class="article-result">
+      <% @articles.each do |article| %>
+        <div class="title">
+          <%= link_to "#{article.title}", article_path(article.id), method: :get %> 
+        </div>
+      <% end %>
+    </div>
+  </div>

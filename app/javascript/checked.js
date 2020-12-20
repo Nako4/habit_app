@@ -15,7 +15,6 @@ window.addEventListener('load', function(){
 
   let achievePanels = document.getElementsByClassName("achieve-rate")
   achievePanels = Array.from(achievePanels);
-  console.log(achievePanels)
     achievePanels.forEach(function (achievePanel) {
       const dayPanel = achievePanel.parentNode
       const achieveValueElement = achievePanel.innerHTML
