@@ -51,7 +51,7 @@ class ArticlesController < ApplicationController
   end
 
   def search
-      @articles = Article.search(params[:word]).order('created_at DESC')
+    @articles = Article.search(params[:word]).order('created_at DESC')
   end
 
   def tag_search

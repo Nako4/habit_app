@@ -3,7 +3,7 @@ class Article < ApplicationRecord
   has_many :tags, through: :article_tag_relations
   has_one :habit
   belongs_to :user
-  
+
   def self.search(search)
     if search
       Article.where(['title LIKE(?) OR output LIKE (?) ', "%#{search}%", "%#{search}%"])
@@ -11,5 +11,4 @@ class Article < ApplicationRecord
       Article.all
     end
   end
-
 end
