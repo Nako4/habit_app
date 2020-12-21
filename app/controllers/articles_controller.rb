@@ -5,6 +5,9 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.all.order('created_at DESC')
+    @article = @articles.find_by(params[:id])
+    @users = User.all
+    @tags = Tag.all
   end
 
   def new
@@ -45,6 +48,15 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     redirect_to root_path if @article.destroy
+  end
+
+  def search
+    @articles = Article.search(params[:word]).order('created_at DESC')
+  end
+
+  def tag_search
+    @tag = Tag.find(params[:id])
+    @articles = @tag.articles
   end
 
   private

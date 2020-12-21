@@ -12,4 +12,5 @@ class User < ApplicationRecord
   end
 
   has_many :habits
+  has_many :articles
 end
