@@ -51,9 +51,12 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    # @tags = Tag.search(params[:search])
-    @articles = Article.search(params[:word]).order('created_at DESC')
-    # binding.pry
+      @articles = Article.search(params[:word]).order('created_at DESC')
+  end
+
+  def tag_search
+    @tag = Tag.find(params[:id])
+    @articles = @tag.articles
   end
 
   private

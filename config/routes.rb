@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   post 'users/show' => 'users#create'
 
   get 'search' => 'articles#search'
+  get '/tags/:id' => "articles#tag_search", as: :tag_search
 
 end

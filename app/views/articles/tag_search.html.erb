@@ -1,9 +1,4 @@
-<div class="search">
-  <%= form_with(url: search_path, method: :get, class: "search-box", local: true) do |f| %>
-    <div class="search-form"><%= f.text_field :word, placeholder: '検索したい単語を入力してください' %></div>
-    <div class="search-btn"><%= f.submit '検索！' %></div>
-  <% end %>
-  </div>    
+<h1 class="tag-search-result"><%= "#{@tag.tag_name}"+"のついた記事一覧" %></h1>
 <div class="contents row">
   <% @articles.each do |article| %>
 
@@ -12,7 +7,6 @@
         <%= user = article.user.nickname %>さんの投稿(<%= article.updated_at.strftime('20%y/%m/%d') %>)
       </div>
       <div class="title"><%= link_to "#{article.title}", article_path(article.id), method: :get %></div>
-  
       <div class="tags">
         <% article.tags.each do |tag| %>
           <%= link_to "#{tag.tag_name}", tag_search_path(tag.id) %>
