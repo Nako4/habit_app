@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'articles#index'
   resources :users, only: [:create, :show]
-  resources :articles, except: [:destroy]
+  get 'users' => redirect("/users/sign_up")
+  resources :articles
 
   #users/showにアクセスしたときにusersコントローラーのcreateアクションを実行
   get 'users/show' => 'users#create'

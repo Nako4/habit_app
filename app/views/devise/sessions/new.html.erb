@@ -1,7 +1,9 @@
 <div class="contents row">
   <div class="container">
-    <h2>Log in</h2>
+    <h2>ログイン</h2>
+    <br/>
     <%= form_with model: @user, url: user_session_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+      <%= render "devise/shared/error_messages", model: f.object %>
       <div class="field">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true %>
@@ -12,15 +14,15 @@
         <%= f.password_field :password, autocomplete: "off" %>
       </div>
 
-      <% if devise_mapping.rememberable? %>
-        <div class="field">
-          <%= f.label :remember_me %><br />
-          <%= f.check_box :remember_me %>
-        </div>
-      <% end -%>
+      <%# <% if devise_mapping.rememberable? %>
+        <%# <div class="field"> %>
+          <%# <%= f.label :remember_me %><br />
+          <%# <%= f.check_box :remember_me %>
+        <%# </div> %>
+      <%# <% end - %>
 
       <div class="actions">
-        <%= f.submit "Log in" %>
+        <%= f.submit "ログイン" %>
       </div>
     <% end %>
   </div>
