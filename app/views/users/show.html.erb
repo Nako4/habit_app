@@ -1,5 +1,3 @@
-<h1>Users#show</h1>
-
 <div class="whole">
   <div class="calender">
     <%= month_calendar events: @habits do |date, habit| %>
@@ -13,8 +11,13 @@
       <% end %>
     <% end %>
   </div>
+
   <div class="habit-list">
-    <%= form_with(model: @habit, id: 'achieve-form', local: true) do |f|  %>
+    <div class="record-title">
+    <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M20,3H4C2.9,3,2,3.9,2,5v14c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V5 C22,3.9,21.1,3,20,3z M10,17H5v-2h5V17z M10,13H5v-2h5V13z M10,9H5V7h5V9z M14.82,15L12,12.16l1.41-1.41l1.41,1.42L17.99,9 l1.42,1.42L14.82,15z" fill-rule="evenodd"/></g></g></svg>
+    今日達成した習慣を記録しましょう！
+    </div>
+    <%= form_with(model: @habit, class: "achieve-form", id: 'achieve-form', local: true) do |f|  %>
       <%= f.text_field :date, class: "date-record", id: "date-record", value: Date.today %>
       
       <% @articles.each do |article| %>
@@ -27,7 +30,7 @@
 
         <% end %>
       <% end %>
-      <div>
+      <div class="today-achieve">
         今日の達成率は
         <span class="achieve-count"></span>
         ％
@@ -38,17 +41,17 @@
   </div>
 
   <div class="achieve">
-    <div >right</div>
+    <div class="article-index">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="lightgreen" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M6.05,8.05c-2.73,2.73-2.73,7.15-0.02,9.88c1.47-3.4,4.09-6.24,7.36-7.93c-2.77,2.34-4.71,5.61-5.39,9.32 c2.6,1.23,5.8,0.78,7.95-1.37C19.43,14.47,20,4,20,4S9.53,4.57,6.05,8.05z"/></g></g></svg>
+    投稿記事一覧
+    </div>
     <% @articles.each do |article| %>
       <div class="my-article" >
         <p><%= link_to "#{article.title}", article_path(article.id), method: :get %></p>
-        <span class="name">
-          <%= article.output%>
+        <span class="output">
+          <%= article.output.truncate(16)%>
         </span>
       </div>
     <% end %>
   </div>
 </div>
-<p>My Page<%= current_user.id %></p>
-
-<p>Find me in app/views/users/show.html.erb</p>

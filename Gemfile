@@ -62,3 +62,4 @@ gem 'faker'
 gem 'devise'
 gem 'simple_calendar',"~> 2.0"
 gem 'gon'
+gem 'rails-i18n'

@@ -1,0 +1,6 @@
+ja:
+  activemodel:
+    attributes:
+      article_tag:
+        title: タイトル
+        output: 学んだ内容

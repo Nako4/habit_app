@@ -4,8 +4,11 @@ class ArticleTag
 
   with_options presence: true do
     validates :title, length: { maximum: 40 }
-    validates :output, length: { maximum: 400 }
+    validates :output, length: { maximum: 500 }
   end
+
+  validates :action, length: { maximum: 25 }
+
 
   # レコードに値があるかないかでcreateかupdateかに分岐させる
   delegate :persisted?, to: :article
