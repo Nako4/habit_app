@@ -9,7 +9,6 @@ class ArticleTag
 
   validates :action, length: { maximum: 25 }
 
-
   # レコードに値があるかないかでcreateかupdateかに分岐させる
   delegate :persisted?, to: :article
 
