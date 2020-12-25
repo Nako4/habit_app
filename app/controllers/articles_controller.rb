@@ -51,12 +51,16 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    @articles = Article.search(params[:word]).order('created_at DESC')
+    if params[:word].present?
+      @articles = Article.search(params[:word]).order('created_at DESC')
+    else
+      redirect_to articles_path
+    end
   end
 
   def tag_search
     @tag = Tag.find(params[:id])
-    @articles = @tag.articles
+    @articles = @tag.articles.order('created_at DESC')
   end
 
   private
