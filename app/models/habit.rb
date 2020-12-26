@@ -6,7 +6,7 @@ class Habit < ApplicationRecord
   end
 
   with_options presence: true do
-    validates :date
+    validates :date, uniqueness: true
     validates :achieve
   end
 end
