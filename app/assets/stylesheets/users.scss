@@ -1,13 +1,23 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.user-name {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 16px;
+  background: #B5FBA7;
+  box-shadow: #B5FBA7 0 0 10px 10px;
+  -webkit-box-shadow: #B5FBA7 0 0 10px 10px;
+  -moz-box-shadow: #B5FBA7 0 0 10px 10px;
+}
+
 .whole {
   width: 800px;
   margin: 0 auto;
   min-height: 100vh;
   display: grid;
   grid-template:
-    "... ...... ...... ...... ..." 50px
+    "... ...... ...... ...... ..." 10px
     "... header header header ..." auto
     "... ...... ...... ...... ..." 30px
     "... left   ...... right  ..." auto
