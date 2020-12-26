@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
-  before_action :set_article, only: [:show, :edit]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  #投稿者でないユーザーがアクセスしたときにTOPページに遷移
+  before_action :restriction, only: [:edit, :update, :destroy]
 
   def index
     @articles = Article.all.order('created_at DESC')
@@ -29,12 +30,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
     @article_tag = ArticleTag.new(article: @article)
   end
 
   def update
-    @article = Article.find(params[:id])
     @article_tag = ArticleTag.new(article_params, article: @article)
     tag_list = params[:article][:tag_name].split(',')
     if @article_tag.valid?
@@ -46,7 +45,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     redirect_to root_path if @article.destroy
   end
 
@@ -76,7 +74,8 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
-  def move_to_index
-    redirect_to action: :index unless user_signed_in?
+  def restriction
+    redirect_to root_path if current_user.id != @article.user_id.to_i
   end
+
 end
