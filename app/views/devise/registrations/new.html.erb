@@ -18,7 +18,7 @@
       <div class="field">
         <%= f.label :password %>
         <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <em>(英数字を含む最低<%= @minimum_password_length %>文字のパスワードを入力してください)</em>
         <% end %><br />
         <%= f.password_field :password, autocomplete: "off" %>
       </div>

@@ -10,7 +10,7 @@ window.addEventListener('load', function(){
   });
 
     //達成度のかかれたパネルを取得
-    //パネルの数値を取得
+    //達成度の数値を取得
     //数値に応じてパネルの背景色を変更
 
   let achievePanels = document.getElementsByClassName("achieve-rate")
@@ -27,20 +27,17 @@ window.addEventListener('load', function(){
         dayPanel.style.backgroundColor = "#89F983";
       } else if (achieveValue >= 20) {
         dayPanel.style.backgroundColor = "#D1FDCF";
-      } 
-
-      
+      }  
     })
 
-
   $(function(){
-    let countAll = $('input:checkbox').length;
+    const countAll = $('input:checkbox').length;
     $('input:checkbox').change(function(){
       // let countCheck = $('#action-list input:checkbox:checked').length;
       //idをいれるとなぜか一番上しかカウントされない。
       
-      let countCheck = $('input:checkbox:checked').length;
-      let achieveRate = countCheck / countAll　* 100
+      const countCheck = $('input:checkbox:checked').length;
+      const achieveRate = Math.round(countCheck / countAll　* 100)
       $('span.achieve-count').text(achieveRate);
       // const achieveValue = document.getElementById('form-value')
       $('input.form-value').val(achieveRate);

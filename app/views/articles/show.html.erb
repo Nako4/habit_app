@@ -1,11 +1,12 @@
 <div class="contents row">
-  
-  
   <div class="note">
   <div class="line">
     <div class="edit-item">
-      <%= link_to '編集', edit_article_path(@article.id), method: :get %>
-      <%= link_to '削除', article_path(@article.id), method: :delete %>
+      <% if current_user == nil || (current_user.id != @article.user_id.to_i) %>
+      <% elsif %>
+        <%= link_to '編集', edit_article_path(@article.id), method: :get %>
+        <%= link_to '削除', article_path(@article.id), method: :delete %>
+      <% end %>
     </div>
     <h1 class="article-title"><%= @article.title %></h1>
     <% if @article.tags.exists? %>

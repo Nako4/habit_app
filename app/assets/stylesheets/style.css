@@ -470,7 +470,7 @@ footer p {
 .edit-item{
   text-align: end;
 }
-.contents row output {
+.line .output {
   word-break: normal;
   white-space: pre-wrap;
 }
