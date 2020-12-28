@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @articles = Article.where(user_id: current_user.id).order('created_at DESC')
     @habits = Habit.where(user_id: current_user.id)
   end
-  
+
   private
 
   def habit_params
