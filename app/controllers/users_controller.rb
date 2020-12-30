@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @article = Article.where(user_id: current_user.id)
     @habit = Habit.new(habit_params)
     habit = Habit.where(date: habit_params[:date], user_id: habit_params[:user_id])
-    if (habit.present?)
+    if habit.present?
       habit.update(habit_params)
     else
       @habit.save
@@ -23,5 +23,4 @@ class UsersController < ApplicationController
   def habit_params
     params.permit(:date, :achieve).merge(user_id: current_user.id)
   end
-  
 end

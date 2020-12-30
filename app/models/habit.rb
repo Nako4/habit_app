@@ -8,5 +8,4 @@ class Habit < ApplicationRecord
   with_options presence: true do
     validates :achieve
   end
-  
 end
