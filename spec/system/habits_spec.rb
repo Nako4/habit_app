@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Habits", type: :system do
+RSpec.describe 'Habits', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @article = FactoryBot.build(:article)
@@ -25,9 +25,9 @@ RSpec.describe "Habits", type: :system do
       fill_in 'article_output', with: @article.output
       fill_in 'article_action', with: @article.action
       expect do
-      find('input[name="commit"]').click
+        find('input[name="commit"]').click
       end.to change { Article.count }.by(1)
-      expect(current_path).to eq "/articles"
+      expect(current_path).to eq '/articles'
       # マイページのボタンがある
       expect(page).to have_content('マイページ')
       # マイページへ遷移する
@@ -37,7 +37,7 @@ RSpec.describe "Habits", type: :system do
       check 'checked'
       # 登録！ボタンを押すとhabitsテーブルへデータが保存される
       expect do
-      find('input[name="commit"]').click
+        find('input[name="commit"]').click
       end.to change { Habit.count }.by(1)
       # マイページに遷移する
       # binding.pry
@@ -65,20 +65,20 @@ RSpec.describe "Habits", type: :system do
       fill_in 'article_output', with: @article.output
       fill_in 'article_action', with: @article.action
       expect do
-      find('input[name="commit"]').click
+        find('input[name="commit"]').click
       end.to change { Article.count }.by(1)
-      expect(current_path).to eq "/articles"
+      expect(current_path).to eq '/articles'
       # マイページのボタンがある
       expect(page).to have_content('マイページ')
       # マイページへ遷移する
       visit users_show_path(@user)
       # マイページで日付を、チェックボックスを入力する
-      fill_in 'date', with: ""
-      check "checked"
+      fill_in 'date', with: ''
+      check 'checked'
       # 登録！ボタンを押す
       expect do
         find('input[name="commit"]').click
-        end.to change { Habit.count}.by(0)
+      end.to change { Habit.count }.by(0)
       # マイページへ遷移する
       visit users_show_path(@user)
       # カレンダーの日付部分に達成度が表示されていない
