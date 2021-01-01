@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     else
       @habit.save
     end
-    redirect_to users_show_path
+    redirect_to users_show_path(current_user.id)
   end
 
   private
