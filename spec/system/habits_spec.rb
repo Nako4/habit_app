@@ -40,7 +40,6 @@ RSpec.describe 'Habits', type: :system do
         find('input[name="commit"]').click
       end.to change { Habit.count }.by(1)
       # マイページに遷移する
-      # binding.pry
       expect(current_path).to eq users_show_path(@user)
       # カレンダーの日付部分に達成度が表示される
       expect(page).to have_content('100%')
