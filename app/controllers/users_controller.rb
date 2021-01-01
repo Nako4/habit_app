@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :destroy]
+  # before_action :set_user, only: [:show]
 
   def show
     @articles = Article.where(user_id: current_user.id).order('created_at DESC')
@@ -15,10 +16,14 @@ class UsersController < ApplicationController
     else
       @habit.save
     end
-    redirect_to users_show_path
+    redirect_to users_show_path(current_user.id)
   end
 
   private
+
+  # def set_user
+  #   @user = User.find([:id])
+  # end
 
   def habit_params
     params.permit(:date, :achieve).merge(user_id: current_user.id)
