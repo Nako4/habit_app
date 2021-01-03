@@ -73,6 +73,11 @@ div[data-check="true"] {
   font-size: 14px;
 }
 
+.days:hover {
+  cursor: pointer;
+  background-color: #0ACBE9;
+}
+
 .today-achieve {
  margin-left: 15px; 
 }
