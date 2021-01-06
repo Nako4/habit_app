@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :show]
   get 'users' => redirect("/users/sign_up")
   resources :articles
+  
+  # ゲストログインのルーティング
+  devise_scope :user do
+    post '/users/guest_sign_in', to: 'users/sessions#new_guest'
+  end
 
   #users/showにアクセスしたときにusersコントローラーのcreateアクションを実行
   get 'users/show' => 'users#create'
