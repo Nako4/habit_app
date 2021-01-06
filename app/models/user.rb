@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # A-Z,a-z,0-9の文字からなるパスワード
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
 
   with_options presence: true do
@@ -14,7 +15,7 @@ class User < ApplicationRecord
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.nickname = 'ゲスト'
-      user.password = SecureRandom.urlsafe_base64
+      user.password = SecureRandom.alphanumeric(10)
     end
   end
 
