@@ -30,7 +30,7 @@ https://habit-record.herokuapp.com/
 
 ## 利用方法、機能特徴
 1.ログインする</br>
-[ログイン](https://user-images.githubusercontent.com/69072413/103877770-dafcd600-5118-11eb-8d50-b99b20b4989a.png)
+![](wiki/images/動作の流れ１.png)
 2.学び、習慣化したいことを投稿する</br>
 [投稿ページへ](https://user-images.githubusercontent.com/69072413/103877728-ccaeba00-5118-11eb-995a-9ee3cb808c80.png)
 [新規投稿](https://user-images.githubusercontent.com/69072413/103877749-d3d5c800-5118-11eb-9272-57bfc5553970.png)
