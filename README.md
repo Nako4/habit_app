@@ -29,16 +29,17 @@ https://habit-record.herokuapp.com/
 パスワード：　123456a</br>
 
 ## 利用方法、機能特徴
-1.ログインする</br>
-![ログイン](wiki/images/動作の流れ１.png)
-2.学び、習慣化したいことを投稿する</br>
-[投稿ページへ](https://user-images.githubusercontent.com/69072413/103877728-ccaeba00-5118-11eb-995a-9ee3cb808c80.png)
-[新規投稿](https://user-images.githubusercontent.com/69072413/103877749-d3d5c800-5118-11eb-9272-57bfc5553970.png)
-3.マイページに行く</br>
-[投稿完了からマイページへ](https://user-images.githubusercontent.com/69072413/103877800-e4863e00-5118-11eb-8728-208c197cbd75.png)
-4.習慣を達成できたか記録する</br>
-[習慣記録フォームを入力](https://user-images.githubusercontent.com/69072413/103877800-e4863e00-5118-11eb-8728-208c197cbd75.png)
-[記録後の画面](https://user-images.githubusercontent.com/69072413/103877844-f536b400-5118-11eb-8be2-3a9cd9343255.png)
+### 1.ログインする</br>
+![flow1](https://user-images.githubusercontent.com/69072413/104141925-797c8600-53fc-11eb-8c1f-327542b00a3a.png)
+### 2.学び、習慣化したいことを投稿する</br>
+![flow2](https://user-images.githubusercontent.com/69072413/104141950-9add7200-53fc-11eb-8d56-da702751996e.png)
+![flow3](https://user-images.githubusercontent.com/69072413/104141960-a29d1680-53fc-11eb-973c-a9086237762d.png)
+### 3.マイページに行く</br>
+![flow4](https://user-images.githubusercontent.com/69072413/104141965-a4ff7080-53fc-11eb-83ef-acb14713af59.png)
+### 4.習慣を達成できたか記録する</br>
+![flow5](https://user-images.githubusercontent.com/69072413/104141967-a6c93400-53fc-11eb-80c9-4d01c4850e42.png)
+![flow6](https://user-images.githubusercontent.com/69072413/104141969-aa5cbb00-53fc-11eb-91e7-93310aff3a79.png)
+![flow7](https://user-images.githubusercontent.com/69072413/104141970-aaf55180-53fc-11eb-985e-59dec7975823.png)
 
 ## 要件定義
 ### トップページ
@@ -149,7 +150,7 @@ belongs_to :user</br>
 
 
 ### ER図
-[ER図](https://user-images.githubusercontent.com/69072413/103701612-ac341200-4fe9-11eb-8a94-b3923a4018d0.png)
+![ER図](https://user-images.githubusercontent.com/69072413/103701612-ac341200-4fe9-11eb-8a94-b3923a4018d0.png)
 
 ## ローカルでの動作方法
 ### バージョン情報
