@@ -37,7 +37,6 @@ https://habit-record.herokuapp.com/
 ### 3.マイページに行く</br>
 ![flow4](https://user-images.githubusercontent.com/69072413/104141965-a4ff7080-53fc-11eb-83ef-acb14713af59.png)
 ### 4.習慣を達成できたか記録する</br>
-![flow5](https://user-images.githubusercontent.com/69072413/104141967-a6c93400-53fc-11eb-80c9-4d01c4850e42.png)
 ![flow6](https://user-images.githubusercontent.com/69072413/104141969-aa5cbb00-53fc-11eb-91e7-93310aff3a79.png)
 ![flow7](https://user-images.githubusercontent.com/69072413/104141970-aaf55180-53fc-11eb-985e-59dec7975823.png)
 
