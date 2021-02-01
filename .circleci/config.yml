@@ -9,9 +9,9 @@ jobs:
       - run: mkdir -p my_workspace #my_workspaceディレクトリの作成
       - run: echo "Trying out workspaces" > my_workspace/echo-output # "Trying.."をecho-outputファイルを新たに作成し出力（入力）する
       - persist_to_workspace: # 後続のjobへ提供したいファイル/ディレクトリをworkspaceへアップロードする
-        root: my_workspace # ルートにしたいコンテナ上のディレクトリ、絶対パス(workingdirからの相対パス)の形で指定
-        paths: # rootからの相対パスでjob間で共有したいファイル/ディレクトリを指定する
-          - echo-output
+          root: my_workspace # ルートにしたいコンテナ上のディレクトリ、絶対パス(workingdirからの相対パス)の形で指定
+          paths: # rootからの相対パスでjob間で共有したいファイル/ディレクトリを指定する
+            - echo-output
   two:
     docker:
       - image: circleci/ruby:2.6.5-node
@@ -19,19 +19,19 @@ jobs:
       - checkout
       - run: echo "A more familiar hi"
       - attach_workspace: # workspaceに保存されたデータをattach_workspaceで取得する
-        at: my_workspace # 絶対パス(workingdirからの相対パス)の形で指定する
+          at: my_workspace # 絶対パス(workingdirからの相対パス)の形で指定する
 
       - run: |
-        if [[ $(cat my_workspace/echo-output) == "Trying out workspaces" ]]; then
-          echo "It worked!";
-        else
-          echo "Nope!"; exit 1
-        fi
+          if [[ $(cat my_workspace/echo-output) == "Trying out workspaces" ]]; then
+            echo "It worked!";
+          else
+            echo "Nope!"; exit 1
+          fi
 workflows:
   version: 2
   one_and_two:
     jobs:
       - one
       - two:
-        requires:
-          - one
+          requires:
+            - one
