@@ -4,7 +4,7 @@ executors:
   default:
     working_directory: ~/webapp
     docker:
-      - image: circleci/ruby:2.6.5-node
+      - image: circleci/ruby:2.6.5-node-browsers
       - image: circleci/mysql:5.7
 
 commands:  
