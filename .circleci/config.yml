@@ -26,7 +26,7 @@ commands:
 
       - run:
           name: Bundle install
-          command: bundle install
+          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
           key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
@@ -69,8 +69,7 @@ jobs:
       
       - run:
           name: Database setup
-          command: |
-            bin/rails db:create
+          command: bundle exec rake db:create
 
       - run:
           name: Rails test
