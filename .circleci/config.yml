@@ -26,9 +26,7 @@ commands:
 
       - run:
           name: Bundle install
-          command: |
-          gem install bundler -v 2.0.2
-          bundle install
+          command: gem update bundler
 
       - save_cache:
           key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
