@@ -69,7 +69,7 @@ jobs:
       
       - run:
           name: Database setup
-          command: bundle exec rake db:create
+          command: rails db:create
 
       - run:
           name: Rails test
