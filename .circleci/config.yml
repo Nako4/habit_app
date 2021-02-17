@@ -26,7 +26,9 @@ commands:
 
       - run:
           name: Bundle install
-          command: bundle install
+          command: |
+          gem install bundler -v 2.0.2
+          bundle install
 
       - save_cache:
           key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
@@ -71,11 +73,18 @@ jobs:
           name: Database setup
           command: |
             bin/rails db:create
+            bin/rails db:schema:load --trace
+
 
       - run:
           name: Rails test
           command: |
-            bin/rails bundle exec rspec
+            bundle exec rspec --profile 10 \
+                  --format RspecJunitFormatter \
+                  --out test_results/rspec.xml \
+                  --format progress \
+                  $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
         
 workflows:
     build_and_test:
