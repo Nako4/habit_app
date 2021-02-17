@@ -1,6 +1,6 @@
 version: 2.1
 
-executor:
+executors:
   default:
     working_directory: ~/webapp
     docker:
