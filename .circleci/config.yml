@@ -73,8 +73,6 @@ jobs:
           name: Database setup
           command: |
             bin/rails db:create
-            bin/rails db:schema:load --trace
-
 
       - run:
           name: Rails test
