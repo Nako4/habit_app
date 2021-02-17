@@ -26,12 +26,10 @@ commands:
 
       - run:
           name: Bundle install
-          command: bundle check --path vendor/bundle || bundle install --development
+          command: bundle install
 
       - save_cache:
           key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
-          paths:
-          - vendor/bundle
       
       - restore_cache:
           keys:
