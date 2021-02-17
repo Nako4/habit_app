@@ -75,12 +75,7 @@ jobs:
       - run:
           name: Rails test
           command: |
-            bundle exec rspec --profile 10 \
-                  --format RspecJunitFormatter \
-                  --out test_results/rspec.xml \
-                  --format progress \
-                  $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-
+            bundle exec rspec spec/**/*_spec.rb
         
 workflows:
     build_and_test:
