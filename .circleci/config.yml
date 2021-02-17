@@ -69,7 +69,8 @@ jobs:
       
       - run:
           name: Database setup
-          command: rails db:create
+          command: |
+          bin/rails db:create
 
       - run:
           name: Rails test
