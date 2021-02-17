@@ -41,7 +41,7 @@ commands:
           command: yarn install --cache-folder ~/.cache/yarn
       
       - save_cache:
-          key: yarn-cache-v1-{{ checksum "yarn/lock" }}
+          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
           paths:
           - ~/.cache/yarn
 
