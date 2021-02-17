@@ -30,6 +30,8 @@ commands:
 
       - save_cache:
           key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       
       - restore_cache:
           keys:
