@@ -56,9 +56,8 @@ jobs:
       - checkout
       - setup
       - run:
-        name: Wait for db
-        command: dockerize -wait tcp:/127.0.0.1:3306 -timeout 90s
-
+          name: Wait for db
+          command: dockerize -wait tcp:/127.0.0.1:3306 -timeout 90s
       
       - run:
           name: User specific database.yml
