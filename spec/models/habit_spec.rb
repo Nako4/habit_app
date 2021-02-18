@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Habit, type: :model do
   before do
     @habit = FactoryBot.build(:habit)
-    # binding.pry
+    @user = FactoryBot.build(:user)
   end
   describe '達成記録' do
     # 正常系
