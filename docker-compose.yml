@@ -5,8 +5,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password 
     ports:
-      - "3306:3306"
+      - "4306:3306"
 
   # webはアプリのこと
   web:
