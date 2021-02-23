@@ -75,7 +75,7 @@ jobs:
       - run:
           name: Rails test
           command: |
-            bundle exec rspec spec/**/*_spec.rb
+            bundle exec rspec spec/models/*_spec.rb
         
 workflows:
     build_and_test:
