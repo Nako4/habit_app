@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Article, type: :model do
   before do
     @article = FactoryBot.build(:article)
+    @user = FactoryBot.build(:user)
+    @article_tag = FactoryBot.build(:article_tag)
   end
 
   describe '新規投稿' do
@@ -19,27 +21,27 @@ RSpec.describe Article, type: :model do
     # 異常系
     context '新規登録ができない時' do
       it 'タイトルが無い時' do
-        @article.title = nil
-        @article.valid?
-        expect(@article.errors.full_messages).to include("Title can't be blank")
+        @article_tag.title = nil
+        @article_tag.valid?
+        expect(@article_tag.errors.full_messages).to include("Title can't be blank")
       end
 
       it '投稿内容が無い時' do
-        @article.output = nil
-        @article.valid?
-        expect(@article.errors.full_messages).to include("Output can't be blank")
+        @article_tag.output = nil
+        @article_tag.valid?
+        expect(@article_tag.errors.full_messages).to include("Output can't be blank")
       end
 
       it 'タイトルの文字が40文字を超えている時' do
-        @article.title = ('あ' * 41).to_s
-        @article.valid?
-        expect(@article.errors.full_messages).to include('Title is too long (maximum is 40 characters)')
+        @article_tag.title = ('あ' * 41).to_s
+        @article_tag.valid?
+        expect(@article_tag.errors.full_messages).to include('Title is too long (maximum is 40 characters)')
       end
 
-      it '投稿内容が400文字を超える時' do
-        @article.output = ('あ' * 401).to_s
-        @article.valid?
-        expect(@article.errors.full_messages).to include('Output is too long (maximum is 400 characters)')
+      it '投稿内容が500文字を超える時' do
+        @article_tag.output = ('あ' * 501).to_s
+        @article_tag.valid?
+        expect(@article_tag.errors.full_messages).to include('Output is too long (maximum is 500 characters)')
       end
     end
   end

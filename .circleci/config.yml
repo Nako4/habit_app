@@ -1,0 +1,83 @@
+version: 2.1
+
+executors:
+  default:
+    working_directory: ~/webapp
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+      - image: circleci/mysql:5.7
+
+commands:  
+  setup:  
+    steps:
+      - checkout
+      - run:
+          name: Update bundler
+          command: gem update bundler
+
+      - run:
+          name: Which bundler?
+          command: bundler -v
+      
+      - restore_cache:
+          keys:
+          - gem-cache-v1-{{ checksum "Gemfile.lock" }} #save_cacheの名前と合わせる
+          - gem-cache-v1-
+
+      - run:
+          name: Bundle install
+          command: bundle check --path vendor/bundle || bundle install
+
+      - save_cache:
+          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      
+      - restore_cache:
+          keys:
+          - yarn-cache-v1-{{ checksum "yarn.lock" }} #save_cacheの名前と合わせる
+          - yarn-cache-v1-
+
+      - run:
+          name: Yarn install
+          command: yarn install --cache-folder ~/.cache/yarn
+      
+      - save_cache:
+          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
+          paths:
+          - ~/.cache/yarn
+
+jobs:
+  test:
+    executor: default
+    environment:
+      RAILS_ENV: 'test'
+      MYSQL_HOST: 127.0.0.1
+      MYSQL_USERNAME: 'root'
+      MYSQL_PASSWORD: ''
+      MYSQL_PORT: 3306
+    steps:
+      - checkout
+      - setup
+      - run:
+          name: Wait for db
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+      
+      - run:
+          name: User specific database.yml
+          command: mv config/database.yml.ci config/database.yml
+      
+      - run:
+          name: Database setup
+          command: |
+            bin/rails db:create
+
+      - run:
+          name: Rails test
+          command: |
+            bundle exec rspec spec/models/*_spec.rb
+        
+workflows:
+    build_and_test:
+      jobs:
+        - test
