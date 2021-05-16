@@ -169,7 +169,7 @@ belongs_to :user</br>
 ## ローカルでの動作方法
 ### バージョン情報
 ・Ruby 2.6.5</br>
-・Ruby on Rails 6.0.0</br>
+・Ruby on Rails 6.1.3.1</br>
 ・jquery 3.5.1</br>
 
 
